@@ -4,7 +4,7 @@ from database import Base
 class Ad(Base):
     __tablename__ = 'ads'
 
-    ad_id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     author = Column(String, index=True)
     views = Column(Integer, default=0)

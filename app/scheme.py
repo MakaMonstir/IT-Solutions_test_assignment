@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class AdScheme(BaseModel):
-    ad_id: int
+    id: int
     title: str
     author: str
     views: int

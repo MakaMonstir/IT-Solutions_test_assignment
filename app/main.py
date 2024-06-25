@@ -12,3 +12,19 @@ def get_db():
         db.close()
 
 app = FastAPI(title='Advertisments')
+
+@app.on_event("startup")
+async def startup():
+    await database.connect()
+    init_db()
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
+@app.get("/ad/{ad_id}", response_model=AdScheme)
+async def read_ad(ad_id: int, db: Session = Depends(get_db)):
+    ad = db.query(Ad).filter(Ad.ad_id == ad_id).first()
+    if ad is None:
+        raise HTTPException(status_code=404, detail="This ad don't exist")
+    return ad

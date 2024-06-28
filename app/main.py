@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import SessionLocal, init_db, database
@@ -28,3 +29,10 @@ async def read_ad(ad_id: int, db: Session = Depends(get_db)):
     if ad is None:
         raise HTTPException(status_code=404, detail="This ad don't exist")
     return ad
+
+@app.get("/ad/", response_model=List[AdScheme])
+async def read_ad(ad_id: int, db: Session = Depends(get_db)):
+    ads = db.query(Ad).limit(10)
+    if ads is None:
+        raise HTTPException(status_code=404, detail="No ads exists")
+    return ads

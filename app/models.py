@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, BigInteger
 from database import Base
 
 class Ad(Base):
@@ -8,4 +8,4 @@ class Ad(Base):
     title = Column(String, index=True)
     author = Column(String, index=True)
     views = Column(Integer, default=0)
-    position = Column(Integer, default=0)
+    position = Column(BigInteger, default=0)

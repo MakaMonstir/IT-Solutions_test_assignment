@@ -23,9 +23,9 @@ This is a FastAPI application that interfaces with a PostgreSQL database. The ap
 
 Create a `.env` file in the root directory of your project with the following content:
 
-```sh
-DATABASE_URL=postgresql://postgres:postgres@db:5432/mydatabase
-```
+   ```sh
+   DATABASE_URL=postgresql://postgres:postgres@db:5432/mydatabase
+   ```
 
 ### Build and Run
 
@@ -38,10 +38,10 @@ DATABASE_URL=postgresql://postgres:postgres@db:5432/mydatabase
 
 2. **Build and start the services:**
 
-```sh
-docker-compose build
-docker-compose up
-```
+   ```sh
+   docker-compose build
+   docker-compose up
+   ```
 
 ### Alternate way (Run locally):
 
@@ -64,22 +64,22 @@ docker-compose up
    uvicorn app.main:app --reload
    ```
 
-(Optional) 4. If your want to populate your db with example data use app/dummy_data.py script. It will parse data from source.html file and paste it to DB on URL specified in .env file.
+(Optional) 4. If you want to populate your db with example data use app/dummy_data.py script. It will parse data from the source.html file and paste it to DB with URL specified in the .env file.
 
-    ```sh
-    python3 app/dummy_data.py
-    ```
+   ```sh
+   python3 app/dummy_data.py
+   ```
 
 ## API Endpoints
 
 ### Get 10 first ads:
 
-    URL: /ad/
-    •	Method: GET
-    •	Response: list of JSONs
+   URL: /ad/
+   •	Method: GET
+   •	Response: list of JSONs
 
-### Get ad by id:
+### Get ad by ID:
 
-URL: /ad/{ad_id}
-• Method: GET
-• Response: JSON
+   URL: /ad/{ad_id}
+   • Method: GET
+   • Response: JSON

@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database import SessionLocal, init_db, database
-from scheme import AdScheme
-from models import Ad
+from app.db import SessionLocal, init_db, db
+from app.scheme import AdScheme
+from app.models import Ad
 
 def get_db():
     db = SessionLocal()
@@ -16,12 +16,12 @@ app = FastAPI(title='Advertisments')
 
 @app.on_event("startup")
 async def startup():
-    await database.connect()
+    await db.connect()
     init_db()
 
 @app.on_event("shutdown")
 async def shutdown():
-    await database.disconnect()
+    await db.disconnect()
 
 @app.get("/ad/{ad_id}", response_model=AdScheme)
 async def read_ad(ad_id: int, db: Session = Depends(get_db)):
@@ -31,7 +31,7 @@ async def read_ad(ad_id: int, db: Session = Depends(get_db)):
     return ad
 
 @app.get("/ad/", response_model=List[AdScheme])
-async def read_ad(ad_id: int, db: Session = Depends(get_db)):
+async def read_ad(db: Session = Depends(get_db)):
     ads = db.query(Ad).limit(10)
     if ads is None:
         raise HTTPException(status_code=404, detail="No ads exists")

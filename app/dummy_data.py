@@ -1,8 +1,8 @@
 import chardet
 from bs4 import BeautifulSoup
 from sqlalchemy.orm import Session
-from database import engine
-from models import Ad
+from app.db import engine
+from app.models import Ad
 
 HTML_FILE = "source.html"
 

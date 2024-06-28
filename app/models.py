@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, BigInteger
-from database import Base
+from app.db import Base
 
 class Ad(Base):
     __tablename__ = 'ads'
